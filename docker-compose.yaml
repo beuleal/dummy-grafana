@@ -1,0 +1,19 @@
+version: "3.8"
+
+networks:
+  monitoring:
+    name: monitoring
+    external: true
+
+services:
+  dummy-grafana:
+    image: grafana/grafana
+    user: "root:root"
+    container_name: dummy-grafana
+    volumes:
+      - ./grafana:/var/lib/grafana
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - monitoring
